@@ -125,22 +125,23 @@
     .item-captured{font-size:12px;}
     .item-notes-wrap input[type="text"]{font-size:16px;padding:10px 12px;}
 
-    /* Decision items: fully stacked */
+    /* Decision items: fully stacked in correct order */
     .decision-item{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+      display:flex !important;
+      flex-direction:column !important;
+      gap:8px;
       padding:16px 0;
     }
+    .decision-item > *{width:100%;}
     .decision-item .check-wrap{
+      display:flex;
       flex-direction:row;
       align-items:center;
       gap:10px;
       padding-top:0;
     }
-    .decision-item .check-wrap::after{
-      content:attr(data-label);
-    }
+    .decision-item .check-wrap + div .field-label{font-size:14px;}
+    .decision-item textarea{margin-top:4px;font-size:16px !important;}
 
     /* Strategic direction blocks */
     .form-section [style*="background:#f5f3f0"]{
