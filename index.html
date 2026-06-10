@@ -6,10 +6,20 @@
 <title>Kiso Group | Website Discovery Checklist</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
-  :root{--ink:#1a1a1a;--mid:#5a5a5a;--rule:#d4cfc8;--bg:#f8f7f4;--surface:#fff;--accent:#8b1a1a;--success:#2d6a4f;--radius:4px;}
+  :root{
+    --ink:#162114;
+    --mid:#294022;
+    --rule:#cacabb;
+    --bg:#fff8ed;
+    --surface:#ffffff;
+    --accent:#e73d00;
+    --accent-dark:#c43200;
+    --success:#294022;
+    --radius:4px;
+  }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;background:var(--bg);color:var(--ink);min-height:100vh;}
-  .site-header{background:var(--ink);color:white;padding:40px 48px 36px;}
+  .site-header{background:#162114;color:white;padding:40px 48px 36px;}
   .header-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px;}
   .header-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,42px);font-weight:500;letter-spacing:-.01em;line-height:1.15;color:white;margin-bottom:8px;}
   .header-subtitle{font-size:12px;color:rgba(255,255,255,.55);font-weight:300;}
@@ -18,7 +28,7 @@
   .instructions strong{color:var(--ink);}
   main{max-width:900px;margin:0 auto;padding:40px 48px 100px;}
   .form-section{margin-bottom:56px;}
-  .section-header{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--ink);}
+  .section-header{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid #162114;}
   .section-num{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:400;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;}
   .section-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;letter-spacing:-.01em;color:var(--ink);}
   .field-row{display:grid;grid-template-columns:200px 1fr;gap:16px 24px;padding:16px 0;border-bottom:1px solid var(--rule);align-items:start;}
@@ -44,7 +54,7 @@
   .notes-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:4px;}
   .item-notes-wrap input[type="text"]{font-size:12px;padding:7px 10px;}
   .portfolio-table{width:100%;border-collapse:collapse;}
-  .portfolio-table th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);font-weight:500;padding:8px 10px;text-align:left;background:#f0eeea;border-bottom:1px solid var(--rule);}
+  .portfolio-table th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);font-weight:500;padding:8px 10px;text-align:left;background:#eae8df;border-bottom:1px solid var(--rule);}
   .portfolio-table td{padding:8px 6px;border-bottom:1px solid var(--rule);vertical-align:top;}
   .portfolio-table tr:last-child td{border-bottom:none;}
   .portfolio-table td:first-child{font-size:11px;color:var(--mid);font-weight:500;text-align:center;padding-top:12px;width:28px;}
@@ -70,14 +80,14 @@
   .btn:active{transform:scale(.98);}
   .btn-secondary{background:transparent;color:var(--ink);border:1px solid var(--rule);}
   .btn-secondary:hover{background:var(--bg);}
-  .btn-download{background:var(--ink);color:white;}
+  .btn-download{background:#294022;color:white;}
   .btn-download:hover{opacity:.85;}
   .draft-indicator{font-size:11px;color:var(--mid);margin-left:auto;display:flex;align-items:center;gap:5px;opacity:0;transition:opacity .3s;}
   .draft-indicator.show{opacity:1;}
   /* SUCCESS SCREEN */
   .success-screen{display:none;text-align:center;padding:80px 48px;}
   .success-screen.show{display:block;}
-  .success-icon{width:56px;height:56px;background:#edf6f1;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+  .success-icon{width:56px;height:56px;background:#e8ede6;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
   .success-screen h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;margin-bottom:10px;}
   .success-screen p{font-size:13px;color:var(--mid);max-width:440px;margin:0 auto;}
   /* TOAST */
@@ -144,7 +154,7 @@
     .decision-item textarea{margin-top:4px;font-size:16px !important;}
 
     /* Strategic direction blocks */
-    .form-section [style*="background:#f5f3f0"]{
+    .form-section [style*="background:#f0ede6"]{
       padding:20px 16px !important;
     }
 
@@ -254,7 +264,7 @@
         <h2 class="section-title">Strategic Direction &mdash; Pre-filled from Intake</h2>
       </div>
 
-      <div style="background:#f5f3f0;border:1px solid var(--rule);border-radius:var(--radius);padding:28px 32px;margin-bottom:28px;">
+      <div style="background:#f0ede6;border:1px solid var(--rule);border-radius:var(--radius);padding:28px 32px;margin-bottom:28px;">
         <p style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500;">Preliminary Strategic Direction — Please Review</p>
 
         <div style="display:flex;flex-direction:column;gap:22px;">
@@ -619,7 +629,7 @@
   <!-- Success screen (shown after Formspree redirect) -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#294022" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
     <h2>Responses submitted.</h2>
     <p>Thank you, Julie. Verdeja &amp; Co. has been notified and will follow up ahead of your next meeting.</p>
