@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiso Group | Website Discovery Checklist</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+  :root{--ink:#1a1a1a;--mid:#5a5a5a;--rule:#d4cfc8;--bg:#f8f7f4;--surface:#fff;--accent:#8b1a1a;--success:#2d6a4f;--radius:4px;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;background:var(--bg);color:var(--ink);min-height:100vh;}
+  .site-header{background:var(--ink);color:white;padding:40px 48px 36px;}
+  .header-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px;}
+  .header-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,42px);font-weight:500;letter-spacing:-.01em;line-height:1.15;color:white;margin-bottom:8px;}
+  .header-subtitle{font-size:12px;color:rgba(255,255,255,.55);font-weight:300;}
+  .due-badge{display:inline-block;margin-top:20px;background:var(--accent);color:white;font-size:11px;font-weight:500;letter-spacing:.06em;padding:5px 14px;border-radius:2px;}
+  .instructions{background:var(--surface);border-left:3px solid var(--accent);margin:32px 48px 0;padding:18px 24px;font-size:13px;color:var(--mid);line-height:1.65;border-radius:0 var(--radius) var(--radius) 0;}
+  .instructions strong{color:var(--ink);}
+  main{max-width:900px;margin:0 auto;padding:40px 48px 100px;}
+  .form-section{margin-bottom:56px;}
+  .section-header{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--ink);}
+  .section-num{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:400;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;letter-spacing:-.01em;color:var(--ink);}
+  .field-row{display:grid;grid-template-columns:200px 1fr;gap:16px 24px;padding:16px 0;border-bottom:1px solid var(--rule);align-items:start;}
+  .field-row:last-child{border-bottom:none;}
+  .field-label{font-size:12px;font-weight:500;color:var(--ink);padding-top:10px;}
+  .field-hint{font-size:11px;color:var(--mid);font-weight:300;margin-top:3px;line-height:1.5;}
+  .field-prefilled{font-size:12px;color:var(--mid);font-style:italic;margin-bottom:8px;line-height:1.55;}
+  .field-prefilled-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+  input[type="text"],input[type="email"],textarea,select{width:100%;background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:9px 12px;font-family:'Inter',sans-serif;font-size:13px;color:var(--ink);transition:border-color .15s,box-shadow .15s;outline:none;}
+  input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,26,26,.08);}
+  textarea{resize:vertical;min-height:72px;line-height:1.55;}
+  .radio-group{display:flex;gap:20px;padding-top:8px;flex-wrap:wrap;}
+  .radio-group label{display:flex;align-items:center;gap:7px;font-size:13px;cursor:pointer;}
+  .radio-group input[type="radio"]{width:15px;height:15px;accent-color:var(--accent);flex-shrink:0;}
+  .checklist-items{display:flex;flex-direction:column;}
+  .checklist-item{display:grid;grid-template-columns:28px 1fr 240px;gap:0 14px;align-items:start;padding:14px 0;border-bottom:1px solid var(--rule);}
+  .checklist-item:last-child{border-bottom:none;}
+  .check-wrap{display:flex;align-items:flex-start;padding-top:3px;}
+  input[type="checkbox"]{width:16px;height:16px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;}
+  .item-content{display:flex;flex-direction:column;gap:3px;}
+  .item-title{font-size:13px;font-weight:500;color:var(--ink);cursor:pointer;}
+  .item-captured{font-size:11px;color:var(--mid);line-height:1.5;}
+  .notes-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:4px;}
+  .item-notes-wrap input[type="text"]{font-size:12px;padding:7px 10px;}
+  .portfolio-table{width:100%;border-collapse:collapse;}
+  .portfolio-table th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);font-weight:500;padding:8px 10px;text-align:left;background:#f0eeea;border-bottom:1px solid var(--rule);}
+  .portfolio-table td{padding:8px 6px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  .portfolio-table tr:last-child td{border-bottom:none;}
+  .portfolio-table td:first-child{font-size:11px;color:var(--mid);font-weight:500;text-align:center;padding-top:12px;width:28px;}
+  .portfolio-table input[type="text"],.portfolio-table select,.portfolio-table textarea{font-size:12px;padding:6px 8px;}
+  .portfolio-table textarea{min-height:48px;}
+  .decisions-wrap{display:flex;flex-direction:column;}
+  .decision-item{display:grid;grid-template-columns:28px 190px 1fr 1fr;gap:0 16px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:start;}
+  .decision-item:last-child{border-bottom:none;}
+  .notes-area textarea{min-height:160px;}
+  /* SUBMIT SECTION */
+  .submit-section{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:28px 32px;margin-bottom:32px;}
+  .submit-section h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;margin-bottom:6px;}
+  .submit-section p{font-size:12px;color:var(--mid);line-height:1.6;margin-bottom:20px;}
+  .submit-field{margin-bottom:16px;}
+  .submit-field label{display:block;font-size:12px;font-weight:500;margin-bottom:5px;}
+  .btn-submit{width:100%;padding:14px;background:var(--accent);color:white;border:none;border-radius:var(--radius);font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:.01em;transition:opacity .15s,transform .1s;}
+  .btn-submit:hover{opacity:.88;}
+  .btn-submit:active{transform:scale(.99);}
+  .btn-submit:disabled{opacity:.5;cursor:not-allowed;}
+  /* ACTIONS BAR */
+  .actions-bar{position:sticky;bottom:0;background:white;border-top:1px solid var(--rule);padding:14px 48px;display:flex;align-items:center;gap:12px;z-index:10;box-shadow:0 -4px 24px rgba(0,0,0,.06);}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:var(--radius);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:opacity .15s,transform .1s;}
+  .btn:active{transform:scale(.98);}
+  .btn-secondary{background:transparent;color:var(--ink);border:1px solid var(--rule);}
+  .btn-secondary:hover{background:var(--bg);}
+  .btn-download{background:var(--ink);color:white;}
+  .btn-download:hover{opacity:.85;}
+  .draft-indicator{font-size:11px;color:var(--mid);margin-left:auto;display:flex;align-items:center;gap:5px;opacity:0;transition:opacity .3s;}
+  .draft-indicator.show{opacity:1;}
+  /* SUCCESS SCREEN */
+  .success-screen{display:none;text-align:center;padding:80px 48px;}
+  .success-screen.show{display:block;}
+  .success-icon{width:56px;height:56px;background:#edf6f1;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+  .success-screen h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;margin-bottom:10px;}
+  .success-screen p{font-size:13px;color:var(--mid);max-width:440px;margin:0 auto;}
+  /* TOAST */
+  .toast{position:fixed;bottom:80px;right:32px;background:var(--success);color:white;padding:12px 20px;border-radius:4px;font-size:13px;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,.15);z-index:100;transform:translateY(20px);opacity:0;transition:all .25s;}
+  .toast.show{transform:translateY(0);opacity:1;}
+  @media(max-width:680px){
+    .site-header,main,.instructions{padding-left:20px;padding-right:20px;}
+    .instructions{margin-left:20px;margin-right:20px;}
+    .field-row{grid-template-columns:1fr;}
+    .checklist-item{grid-template-columns:28px 1fr;}
+    .item-notes-wrap{grid-column:2;}
+    .decision-item{grid-template-columns:28px 1fr;}
+    .actions-bar{padding:12px 20px;flex-wrap:wrap;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <p class="header-eyebrow">Verdeja &amp; Co. &times; Kiso Group</p>
+  <h1 class="header-title">Website Discovery Checklist</h1>
+  <p class="header-subtitle">Client Information Request</p>
+  <span class="due-badge">Due Friday, June 12, 2026</span>
+</header>
+
+<div class="instructions">
+  <strong>How to use this form:</strong> We pre-filled everything captured from the kickoff &mdash; Julie only needs to confirm what&rsquo;s accurate and complete the blank items. For files (logos, photos, etc.), upload directly to the shared Google Drive folder and check the box here to confirm. When you&rsquo;re done, hit <strong>Submit Responses</strong> at the bottom &mdash; your answers will be sent directly to Verdeja &amp; Co. Your draft is saved in this browser so you can return and finish, but please use the same device and browser each time.
+</div>
+
+<main>
+  <form id="discoveryForm" autocomplete="off">
+
+    <!-- SECTION 1 -->
+    <div class="form-section">
+      <div class="section-header">
+        <span class="section-num">Section 01</span>
+        <h2 class="section-title">Project Setup &mdash; Confirmed So Far</h2>
+      </div>
+      <div class="field-row">
+        <div>
+          <div class="field-label">Project Timeline</div>
+          <div class="field-hint">Note any changes only.</div>
+        </div>
+        <div>
+          <div class="field-prefilled-label">Captured from Kickoff</div>
+          <div class="field-prefilled">7-week staging site timeline: 5-week strategy/design/build + 2-week QA and launch readiness.</div>
+          <input type="text" name="s1_timeline" placeholder="Any changes or corrections? Leave blank if accurate." />
+        </div>
+      </div>
+      <div class="field-row">
+        <div>
+          <div class="field-label">Weekly Meeting Day &amp; Time</div>
+          <div class="field-hint">Please confirm your preferred day and time.</div>
+        </div>
+        <div>
+          <div class="field-prefilled-label">Captured from Kickoff</div>
+          <div class="field-prefilled">Monday afternoons or Tuesdays. Verdeja &amp; Co. deliverables Wednesdays; Kiso Group feedback Fridays.</div>
+          <div class="radio-group">
+            <label><input type="radio" name="s1_meeting_day" value="Monday afternoon"> Monday afternoon</label>
+            <label><input type="radio" name="s1_meeting_day" value="Tuesday"> Tuesday</label>
+            <label><input type="radio" name="s1_meeting_day" value="Other"> Other</label>
+          </div>
+          <input type="text" name="s1_meeting_time" placeholder="Preferred time (e.g. 2:00 PM ET)" style="margin-top:8px;" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div>
+          <div class="field-label">GoDaddy / Domain Access</div>
+          <div class="field-hint">Confirm who holds the login or the access path.</div>
+        </div>
+        <div>
+          <div class="field-prefilled-label">Captured from Kickoff</div>
+          <div class="field-prefilled">Current website hosting and domain understood to be on GoDaddy.</div>
+          <input type="text" name="s1_godaddy" placeholder="Who has the login? Any notes on access?" />
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="form-section">
+      <div class="section-header">
+        <span class="section-num">Section 02</span>
+        <h2 class="section-title">Strategic Direction &mdash; Pre-filled from Intake</h2>
+      </div>
+
+      <div style="background:#f5f3f0;border:1px solid var(--rule);border-radius:var(--radius);padding:28px 32px;margin-bottom:28px;">
+        <p style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500;">Preliminary Strategic Direction — Please Review</p>
+
+        <div style="display:flex;flex-direction:column;gap:22px;">
+
+          <div>
+            <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;">Overall Website Goal</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.65;">Kiso Group needs a more elevated, credible, and visually compelling website that better reflects the quality, sophistication, and scale of the work the company is already doing. The current website has useful content and photography, but the online presence does not yet fully match the caliber of the company&rsquo;s work or the expectations of high-value prospects, referral partners, and decision-makers. The new website should help Kiso Group compete more effectively in situations where competitors may not be doing better work, but may appear more polished online.</p>
+          </div>
+
+          <div>
+            <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;">Strategic Positioning</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.65;">Kiso Group should be positioned as a premium aquatic construction and construction partner with deep technical expertise, strong execution capability, and high-end project experience.</p>
+            <p style="font-size:12px;color:var(--ink);font-style:italic;margin-top:8px;line-height:1.65;">&ldquo;Luxury aquatic construction backed by disciplined construction expertise.&rdquo;</p>
+            <p style="font-size:12px;color:var(--mid);margin-top:6px;line-height:1.65;">Alternative direction to refine: <em>&ldquo;High-end aquatic environments built with precision, experience, and construction intelligence.&rdquo;</em></p>
+            <p style="font-size:12px;color:var(--mid);margin-top:8px;line-height:1.65;">The brand should not feel like a trendy pool company or a flashy social-first contractor. It should feel established, capable, premium, technically strong, and visually refined.</p>
+          </div>
+
+          <div>
+            <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;">Desired Brand Perception</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.65;">After visiting the website, prospects should feel that Kiso Group is highly capable, experienced, trustworthy, premium, organized, technically knowledgeable, able to handle complex work, and more sophisticated than a standard pool contractor &mdash; backed by real project proof, not just marketing language. The site should communicate that Kiso Group does serious work for serious projects without feeling cold, corporate, or overdone.</p>
+          </div>
+
+          <div>
+            <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;">Visual Direction</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.65;">Elevated, clean, editorial, and project-led &mdash; more architectural or design publication than contractor brochure. References discussed: editorial, high-end, architectural, clean, refined, portfolio-driven, image-forward, premium Miami / South Florida luxury, Restoration Hardware visual sensibility. Photography should do a lot of the heavy lifting; the new website should allow projects to speak for themselves.</p>
+          </div>
+
+          <div>
+            <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;">Tone</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.65;">Premium but approachable &mdash; technical but not dry, confident but not flashy, sophisticated but clear, editorial rather than promotional.</p>
+          </div>
+
+          <div>
+            <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;">Portfolio / Project Strategy</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.65;">The portfolio should be a major component of the website. Rather than a basic gallery, selected projects should be presented as individual portfolio pages using a consistent template. Direction: prioritize the strongest and most relevant work, use the best 3&ndash;4 images per featured project, and avoid overloading the site with weaker or outdated projects. Focus on work that reflects the type and quality Kiso Group wants to attract moving forward.</p>
+          </div>
+
+          <div>
+            <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;">Logo / Brand Treatment</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.65;">The red element of the current logo should remain part of the brand identity. Typography and font treatment may be refined or modernized, but the red logo mark/detail should be preserved. Original logo files are still needed.</p>
+          </div>
+
+          <div>
+            <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;">Priority Audience</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.65;">High-value residential, luxury, commercial, and referral-driven prospects who need to feel confident Kiso Group can execute complex aquatic construction. Potential audiences: luxury homeowners, developers, general contractors, architects/designers, commercial property owners, referral partners, and high-end residential decision-makers.</p>
+          </div>
+
+          <div>
+            <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;">Competitive / Inspiration Direction</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.65;">WW Gay and Power Design were discussed as inspiration/reference companies that communicate scale, credibility, culture, and operational strength well &mdash; not as direct competitors. The takeaway is how established companies use their websites to communicate capability, process, scale, culture, and professional maturity, translated into a more boutique, premium, aquatic/construction-specific expression.</p>
+          </div>
+
+          <div>
+            <p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;">SEO Direction</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.65;">Strong foundational SEO including page titles, meta descriptions, alt tags, structured headings, and structured data where applicable &mdash; supporting both traditional search and AI-driven discovery. Priority themes likely include South Florida aquatic construction, luxury pool construction, custom pool builder, high-end pool contractor, and Miami / South Florida service areas.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="field-row" style="border-top:1px solid var(--rule);">
+        <div>
+          <div class="field-label">Corrections / Additions</div>
+          <div class="field-hint">Anything we got wrong about positioning, tone, audience, or goals?</div>
+        </div>
+        <div>
+          <textarea name="s2_corrections" placeholder="Leave blank if everything looks accurate."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="form-section">
+      <div class="section-header">
+        <span class="section-num">Section 03</span>
+        <h2 class="section-title">Required Assets &mdash; Upload to Google Drive, Then Check Off</h2>
+      </div>
+      <div class="checklist-items">
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="asset_agreement" id="asset_agreement" value="Uploaded to Drive"></div>
+          <div class="item-content">
+            <label class="item-title" for="asset_agreement">Signed Client Services Agreement</label>
+            <div class="item-captured">Julie forwarded to Hiroki; signature status not confirmed.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Notes</span>
+            <input type="text" name="asset_agreement_notes" placeholder="Status or any context..." />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="asset_logo" id="asset_logo" value="Uploaded to Drive"></div>
+          <div class="item-content">
+            <label class="item-title" for="asset_logo">Original Logo Files</label>
+            <div class="item-captured">AI, EPS, SVG, PDF, or PNG preferred. Red element stays; typography can evolve.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Notes</span>
+            <input type="text" name="asset_logo_notes" placeholder="Format available, or any notes..." />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="asset_brand" id="asset_brand" value="Uploaded to Drive"></div>
+          <div class="item-content">
+            <label class="item-title" for="asset_brand">Brand Files / Materials</label>
+            <div class="item-captured">Brand colors, fonts, brochures, decks, or any marketing materials.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Notes</span>
+            <input type="text" name="asset_brand_notes" placeholder="What's available?" />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="asset_photos" id="asset_photos" value="Uploaded to Drive"></div>
+          <div class="item-content">
+            <label class="item-title" for="asset_photos">Original / High-Resolution Project Photos</label>
+            <div class="item-captured">Originals needed for quality &mdash; please organize by project or location if possible.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Notes</span>
+            <input type="text" name="asset_photos_notes" placeholder="How they're organized, any gaps..." />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="asset_video" id="asset_video" value="Uploaded to Drive"></div>
+          <div class="item-content">
+            <label class="item-title" for="asset_video">Video or Drone Footage</label>
+            <div class="item-captured">If any exists and is available for use on the website.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Notes</span>
+            <input type="text" name="asset_video_notes" placeholder="Available / not available..." />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="asset_license" id="asset_license" value="Uploaded to Drive"></div>
+          <div class="item-content">
+            <label class="item-title" for="asset_license">Credentials / License Details</label>
+            <div class="item-captured">Exact CPC / certified pool contractor language and license numbers.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">License # / Details</span>
+            <input type="text" name="asset_license_notes" placeholder="Paste number or describe where to find it" />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="asset_testimonials" id="asset_testimonials" value="Uploaded to Drive"></div>
+          <div class="item-content">
+            <label class="item-title" for="asset_testimonials">Testimonials</label>
+            <div class="item-captured">Client reviews, referral quotes, or any language to consider for the site.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Notes</span>
+            <input type="text" name="asset_testimonials_notes" placeholder="Available / will send / none yet" />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="asset_legal" id="asset_legal" value="Uploaded to Drive"></div>
+          <div class="item-content">
+            <label class="item-title" for="asset_legal">Must-Have Legal / Compliance Language</label>
+            <div class="item-captured">Any exact wording required by licensing or regulation.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Wording / Notes</span>
+            <input type="text" name="asset_legal_notes" placeholder="Paste or describe" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: ACCESS -->
+    <div class="form-section">
+      <div class="section-header">
+        <span class="section-num">Section 04</span>
+        <h2 class="section-title">Access &amp; Technical Items</h2>
+      </div>
+      <div class="checklist-items">
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="tech_website" id="tech_website" value="Confirmed"></div>
+          <div class="item-content">
+            <label class="item-title" for="tech_website">Website / Admin Access</label>
+            <div class="item-captured">Julie built the current site; access likely exists but needs to be confirmed.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Login Path / Notes</span>
+            <input type="text" name="tech_website_notes" placeholder="Who has it / where is it?" />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="tech_domain" id="tech_domain" value="Confirmed"></div>
+          <div class="item-content">
+            <label class="item-title" for="tech_domain">Domain / DNS Access</label>
+            <div class="item-captured">Likely through GoDaddy; needs confirmation.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Login Path / Notes</span>
+            <input type="text" name="tech_domain_notes" placeholder="Who holds this?" />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="tech_godaddy" id="tech_godaddy" value="Confirmed"></div>
+          <div class="item-content">
+            <label class="item-title" for="tech_godaddy">GoDaddy Account Access</label>
+            <div class="item-captured">Current hosting and domain environment.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Login Path / Notes</span>
+            <input type="text" name="tech_godaddy_notes" placeholder="Account email or who to contact" />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="tech_ga4" id="tech_ga4" value="Confirmed"></div>
+          <div class="item-content">
+            <label class="item-title" for="tech_ga4">GA4 / Google Analytics Access</label>
+            <div class="item-captured">If a GA4 property exists &mdash; needed before launch.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Login Path / Notes</span>
+            <input type="text" name="tech_ga4_notes" placeholder="Property ID or who to contact" />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="tech_gsc" id="tech_gsc" value="Confirmed"></div>
+          <div class="item-content">
+            <label class="item-title" for="tech_gsc">Google Search Console Access</label>
+            <div class="item-captured">If a Search Console property exists.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Login Path / Notes</span>
+            <input type="text" name="tech_gsc_notes" placeholder="Property or who to contact" />
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-wrap"><input type="checkbox" name="tech_contact" id="tech_contact" value="Confirmed"></div>
+          <div class="item-content">
+            <label class="item-title" for="tech_contact">Technical Contact</label>
+            <div class="item-captured">Likely Julie or Kiso unless another vendor is involved.</div>
+          </div>
+          <div class="item-notes-wrap">
+            <span class="notes-label">Name / Email / Role</span>
+            <input type="text" name="tech_contact_notes" placeholder="Name and how to reach them" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: DECISIONS -->
+    <div class="form-section">
+      <div class="section-header">
+        <span class="section-num">Section 05</span>
+        <h2 class="section-title">Decisions Needed by Friday</h2>
+      </div>
+      <div class="decisions-wrap">
+        <div class="decision-item">
+          <div class="check-wrap" style="padding-top:3px;"><input type="checkbox" name="dec_meeting" id="dec_meeting" value="Resolved"></div>
+          <div>
+            <div class="field-label">Weekly Meeting Time</div>
+            <div class="field-hint" style="margin-top:2px;">Monday afternoon or Tuesday</div>
+          </div>
+          <div>
+            <div class="field-prefilled-label">Captured</div>
+            <div class="field-prefilled">Monday afternoon or Tuesday.</div>
+          </div>
+          <textarea name="dec_meeting_response" rows="2" placeholder="Confirmed day and time..."></textarea>
+        </div>
+        <div class="decision-item">
+          <div class="check-wrap" style="padding-top:3px;"><input type="checkbox" name="dec_approval" id="dec_approval" value="Resolved"></div>
+          <div>
+            <div class="field-label">Final Approval Process</div>
+            <div class="field-hint" style="margin-top:2px;">Sitemap, design, staging, and launch.</div>
+          </div>
+          <div>
+            <div class="field-prefilled-label">Captured</div>
+            <div class="field-prefilled">Julie day-to-day; Hiroki on major decisions.</div>
+          </div>
+          <textarea name="dec_approval_response" rows="2" placeholder="Confirm or clarify..."></textarea>
+        </div>
+        <div class="decision-item">
+          <div class="check-wrap" style="padding-top:3px;"><input type="checkbox" name="dec_portfolio" id="dec_portfolio" value="Resolved"></div>
+          <div>
+            <div class="field-label">Portfolio Projects to Feature</div>
+            <div class="field-hint" style="margin-top:2px;">Start thinking about which projects to include.</div>
+          </div>
+          <div>
+            <div class="field-prefilled-label">Reminder</div>
+            <div class="field-prefilled">No need for a final list yet &mdash; but start thinking about which projects you&rsquo;d want featured, organized by location if possible. We&rsquo;ll build this out together in the next phase.</div>
+          </div>
+          <textarea name="dec_portfolio_response" rows="2" placeholder="Any project names, locations, or early thoughts..."></textarea>
+        </div>
+        <div class="decision-item">
+          <div class="check-wrap" style="padding-top:3px;"><input type="checkbox" name="dec_projects" id="dec_projects" value="Resolved"></div>
+          <div>
+            <div class="field-label">Projects to Feature First</div>
+            <div class="field-hint" style="margin-top:2px;">Strongest work, not every legacy project.</div>
+          </div>
+          <div>
+            <div class="field-prefilled-label">Captured</div>
+            <div class="field-prefilled">Priority to strongest work; specifics TBD.</div>
+          </div>
+          <textarea name="dec_projects_response" rows="2" placeholder="Project names or priority order..."></textarea>
+        </div>
+        <div class="decision-item">
+          <div class="check-wrap" style="padding-top:3px;"><input type="checkbox" name="dec_hidden" id="dec_hidden" value="Resolved"></div>
+          <div>
+            <div class="field-label">Services Not Currently Online</div>
+            <div class="field-hint" style="margin-top:2px;">Anything worth adding to the new site?</div>
+          </div>
+          <div>
+            <div class="field-prefilled-label">Captured</div>
+            <div class="field-prefilled">Not yet identified.</div>
+          </div>
+          <textarea name="dec_hidden_response" rows="2" placeholder="Services, credentials, or specialties to add..."></textarea>
+        </div>
+        <div class="decision-item">
+          <div class="check-wrap" style="padding-top:3px;"><input type="checkbox" name="dec_nopublish" id="dec_nopublish" value="Resolved"></div>
+          <div>
+            <div class="field-label">Content Not to Publish</div>
+            <div class="field-hint" style="margin-top:2px;">Project names, locations, client names, images.</div>
+          </div>
+          <div>
+            <div class="field-prefilled-label">Captured</div>
+            <div class="field-prefilled">None identified yet.</div>
+          </div>
+          <textarea name="dec_nopublish_response" rows="2" placeholder="List any do-not-publish items..."></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 6: NOTES -->
+    <div class="form-section">
+      <div class="section-header">
+        <span class="section-num">Section 06</span>
+        <h2 class="section-title">Notes / Drop-In Area</h2>
+      </div>
+      <div class="notes-area">
+        <textarea name="general_notes" placeholder="Anything else to share &mdash; questions, context, ideas, or anything that didn't fit above."></textarea>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-section">
+      <h3>Ready to submit?</h3>
+      <p>Enter your name and email below, then hit Submit. Your responses will be sent directly to Verdeja &amp; Co. You&rsquo;ll receive a confirmation email at the address you provide.</p>
+      <div class="submit-field">
+        <label for="submitter_name">Your Name</label>
+        <input type="text" id="submitter_name" name="submitter_name" placeholder="e.g. Julie Smith" required />
+      </div>
+      <div class="submit-field">
+        <label for="submitter_email">Your Email</label>
+        <input type="email" id="submitter_email" name="_replyto" placeholder="your@email.com" required />
+      </div>
+      <!-- Hidden Formspree fields -->
+      <input type="hidden" name="_subject" value="Kiso Group Discovery Checklist Submission" />
+      <input type="hidden" name="_next" value="" />
+      <button type="submit" class="btn-submit" id="submitBtn">
+        Submit Responses to Verdeja &amp; Co.
+      </button>
+    </div>
+
+  </form>
+
+  <!-- Success screen (shown after Formspree redirect) -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Responses submitted.</h2>
+    <p>Thank you, Julie. Verdeja &amp; Co. has been notified and will follow up ahead of your next meeting.</p>
+  </div>
+
+</main>
+
+<div class="actions-bar">
+  <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear Draft</button>
+  <button type="button" class="btn btn-download" onclick="downloadCSV()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Save Copy (CSV)
+  </button>
+  <span class="draft-indicator" id="draftIndicator">
+    Draft saved in this browser
+  </span>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── Draft persistence (localStorage) ──
+  const STORAGE_KEY = 'kiso_discovery_v3';
+
+  document.getElementById('discoveryForm').addEventListener('input', saveDraft);
+  document.getElementById('discoveryForm').addEventListener('change', saveDraft);
+
+  function getFormData() {
+    const form = document.getElementById('discoveryForm');
+    const data = {};
+    form.querySelectorAll('input,textarea,select').forEach(el => {
+      if (!el.name) return;
+      if (el.type === 'checkbox') data[el.name] = el.checked ? 'Yes' : 'No';
+      else if (el.type === 'radio') { if (el.checked) data[el.name] = el.value; }
+      else data[el.name] = el.value;
+    });
+    return data;
+  }
+
+  function saveDraft() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(getFormData()));
+    const ind = document.getElementById('draftIndicator');
+    ind.classList.add('show');
+    setTimeout(() => ind.classList.remove('show'), 3000);
+  }
+
+  function loadDraft() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    const form = document.getElementById('discoveryForm');
+    Object.entries(data).forEach(([name, value]) => {
+      form.querySelectorAll('[name="' + name + '"]').forEach(el => {
+        if (el.type === 'checkbox') el.checked = value === 'Yes';
+        else if (el.type === 'radio') el.checked = el.value === value;
+        else el.value = value;
+      });
+    });
+  }
+
+  function clearForm() {
+    if (!confirm('Clear your draft? This cannot be undone.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    document.getElementById('discoveryForm').reset();
+    showToast('Draft cleared.');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ── Formspree submission ──
+  // IMPORTANT: Replace YOUR_FORM_ID below with the ID from your Formspree form endpoint.
+  // Sign up at formspree.io, create a new form pointed at victoria@verdejaandco.com,
+  // and paste the 8-character ID here (e.g. "xpwzgkqb").
+  const FORMSPREE_ID = 'xgobzora';
+
+  document.getElementById('discoveryForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    const data = getFormData();
+    const formData = new FormData();
+    Object.entries(data).forEach(([k, v]) => formData.append(k, v));
+
+    try {
+      const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        localStorage.removeItem(STORAGE_KEY);
+        document.getElementById('discoveryForm').style.display = 'none';
+        document.getElementById('successScreen').classList.add('show');
+        document.querySelector('.actions-bar').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Submit Responses to Verdeja & Co.';
+        showToast('Submission failed. Please try again or contact victoria@verdejaandco.com directly.');
+      }
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Submit Responses to Verdeja & Co.';
+      showToast('Network error. Please check your connection and try again.');
+    }
+  });
+
+  // ── CSV download (backup copy for Julie) ──
+  function downloadCSV() {
+    const data = getFormData();
+    const labels = {
+      submitter_name:'Submitted By',
+      s1_timeline:'S1 - Timeline Changes',
+      s1_meeting_day:'S1 - Meeting Day',
+      s1_meeting_time:'S1 - Meeting Time',
+      s1_godaddy:'S1 - GoDaddy Access Notes',
+      s2_corrections:'S2 - Strategic Corrections',
+      asset_agreement:'Assets - Signed Agreement (Uploaded?)',
+      asset_agreement_notes:'Assets - Signed Agreement Notes',
+      asset_logo:'Assets - Logo Files (Uploaded?)',
+      asset_logo_notes:'Assets - Logo Notes',
+      asset_brand:'Assets - Brand Materials (Uploaded?)',
+      asset_brand_notes:'Assets - Brand Materials Notes',
+      asset_photos:'Assets - Hi-Res Photos (Uploaded?)',
+      asset_photos_notes:'Assets - Photos Notes',
+      asset_video:'Assets - Video/Drone (Uploaded?)',
+      asset_video_notes:'Assets - Video Notes',
+      asset_license:'Assets - License/Credentials (Uploaded?)',
+      asset_license_notes:'Assets - License Details',
+      asset_testimonials:'Assets - Testimonials (Uploaded?)',
+      asset_testimonials_notes:'Assets - Testimonials Notes',
+      asset_legal:'Assets - Legal Language (Uploaded?)',
+      asset_legal_notes:'Assets - Legal Language Notes',
+      tech_website:'Tech - Website Admin Access (Done?)',
+      tech_website_notes:'Tech - Website Access Notes',
+      tech_domain:'Tech - Domain/DNS Access (Done?)',
+      tech_domain_notes:'Tech - Domain Notes',
+      tech_godaddy:'Tech - GoDaddy Access (Done?)',
+      tech_godaddy_notes:'Tech - GoDaddy Notes',
+      tech_ga4:'Tech - GA4 Access (Done?)',
+      tech_ga4_notes:'Tech - GA4 Notes',
+      tech_gsc:'Tech - Search Console Access (Done?)',
+      tech_gsc_notes:'Tech - Search Console Notes',
+      tech_contact:'Tech - Technical Contact (Done?)',
+      tech_contact_notes:'Tech - Technical Contact Details',
+      dec_meeting:'Decision - Meeting Time (Resolved?)',
+      dec_meeting_response:'Decision - Meeting Time Response',
+      dec_approval:'Decision - Approval Process (Resolved?)',
+      dec_approval_response:'Decision - Approval Process Response',
+      dec_portfolio:'Decision - Portfolio Projects (Noted?)',
+      dec_portfolio_response:'Decision - Portfolio Projects Notes',
+      dec_projects:'Decision - Hidden Services (Resolved?)',
+      dec_projects_response:'Decision - Projects Response',
+      dec_hidden:'Decision - Hidden Services (Resolved?)',
+      dec_hidden_response:'Decision - Hidden Services Response',
+      dec_nopublish:'Decision - Do-Not-Publish (Resolved?)',
+      dec_nopublish_response:'Decision - Do-Not-Publish Response',
+      general_notes:'General Notes'
+    };
+    const rows = [['Field','Response']];
+    Object.entries(labels).forEach(([key, label]) => {
+      rows.push([label, data[key] !== undefined ? data[key] : '']);
+    });
+    const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g,'""') + '"').join(',')).join('\n');
+    const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'Kiso_Group_Discovery_Responses.csv';
+    a.click(); URL.revokeObjectURL(url);
+    showToast('CSV saved.');
+  }
+
+  // ── Check if returning after successful submit ──
+  if (window.location.search.includes('submitted=true')) {
+    document.getElementById('discoveryForm').style.display = 'none';
+    document.getElementById('successScreen').classList.add('show');
+    document.querySelector('.actions-bar').style.display = 'none';
+  }
+
+  loadDraft();
+</script>
+</body>
+</html>
